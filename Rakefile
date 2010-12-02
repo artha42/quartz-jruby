@@ -11,6 +11,7 @@ Hoe.plugin :newgem
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.spec 'quartz-jruby' do
+  self.readme_file = 'quartz-jruby.rdoc'
   self.version = Quartz::VERSION
   self.developer 'Vagmi Mudumbai', 'vagmi@artha42.com'
   self.rubyforge_name       = self.name # TODO this is default value
