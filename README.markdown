@@ -7,12 +7,21 @@ From [Quartz Scheduler's website](http://www.quartz-scheduler.org/)
 
 ## Usage
 
+Install with
+
+        $ gem install quartz-jruby
+
+You need to require the jars included /java directory independently.
+
+        require 'quartz'
         class TestScheduler
           include Quartz::Scheduler
           schedule(:say_hello_5, :every=>5.seconds) { info "every 5 seconds" }
           schedule(:say_hello_30, :every=>30.seconds) { error "every 30 seconds" }
         end
         TestScheduler.instance.run
+
+If you use log4j in your app, quartz-jruby integrates with it as well.
 
 ## Feedback
 
