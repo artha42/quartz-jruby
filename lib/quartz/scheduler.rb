@@ -39,7 +39,8 @@ module Quartz
         options = defaults.merge options
         job_factory.jobs[name.to_s] = block
         job_detail = JobDetail.new(name.to_s, "cronjob", CronJob.new(name.to_s))
-        cron_expression = Cronify.cronify(options[:every], Time.parse(options[:at]))
+        at = Time.parse(options[:at]) rescue nil || options[:at]
+        cron_expression = Cronify.cronify(options[:every], at)
         trigger = CronTrigger.new("#{name.to_s}_crontrig", "cront_trig_group", name.to_s, "cronjob", cron_expression)
         scheduler.set_job_factory(job_factory)
         scheduler.schedule_job(job_detail, trigger)
